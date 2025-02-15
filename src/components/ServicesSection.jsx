@@ -67,11 +67,15 @@ const ServicesSection = () => {
             your investment journey or looking to optimize your portfolio,
             Planning Resources Center is ready to guide you.
           </p>
-          <a
-            href="#contact"
-            className="inline-block px-6 py-3 text-white bg-[#0079C1] rounded-lg font-semibold hover:bg-[#005f8d] transition-colors duration-300"          >
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="inline-block px-6 py-3 text-white bg-[#0079C1] rounded-lg font-semibold hover:bg-[#005f8d] transition-colors duration-300"
+          >
             Ready to take the next step? Contact us today.
-          </a>
+          </button>
         </div>
       </div>
     </section>
