@@ -36,7 +36,7 @@ const HeroSection = () => {
             className="hero-button"
             onClick={() =>
               document
-                .getElementById("what-sets-us-apart")
+                .getElementById("about")
                 .scrollIntoView({ behavior: "smooth" })
             }
           >

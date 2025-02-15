@@ -18,17 +18,18 @@ const ContactSection = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4">Office</h3>
             <p>
-              #1812 - 1177 W Hastings St
+                728 E Northwest Hwy, Suite #100
               <br />
-              Vancouver BC V6E 2K3
+              Palatine, IL 60074
             </p>
           </div>
 
           {/* Contact Info */}
           <div>
             <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
-            <p>604 365 4563</p>
-            <p>themes@advisorwebsites.com</p>
+            <p>(847) 701-0253</p>
+            <p>plannings@hotmail.com</p>
+            {/* 
             <div className="flex space-x-4 mt-4">
               <a href="#" className="text-gray-200 hover:text-white">
                 Facebook
@@ -40,6 +41,7 @@ const ContactSection = () => {
                 Twitter
               </a>
             </div>
+        */}
           </div>
 
           {/* Get In Touch Form */}

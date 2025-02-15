@@ -71,8 +71,8 @@ const Website = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar activeSection={activeSection} onNavClick={handleNavClick} />
       <HeroSection />
-      <WhatSetsUsApartSection />
       <AboutSection />
+      <WhatSetsUsApartSection />
       <ServicesSection />
       <ContactSection />
       <Footer />
