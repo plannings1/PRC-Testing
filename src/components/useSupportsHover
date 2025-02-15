@@ -1,0 +1,23 @@
+import { useState, useEffect } from "react";
+
+export function useSupportsHover() {
+  const [supportsHover, setSupportsHover] = useState(false);
+
+  useEffect(() => {
+    // Check if the device supports hover
+    const mq = window.matchMedia("(hover: hover)");
+    setSupportsHover(mq.matches);
+
+    // Watch for changes in real-time (optional)
+    const handleChange = (e) => {
+      setSupportsHover(e.matches);
+    };
+    mq.addEventListener("change", handleChange);
+
+    return () => {
+      mq.removeEventListener("change", handleChange);
+    };
+  }, []);
+
+  return supportsHover;
+}

@@ -1,6 +1,4 @@
-// src/components/HeroSection.jsx
 import React from "react";
-import ParticlesBackground from "./ParticlesBackground";
 
 const HeroSection = () => {
   return (
@@ -8,11 +6,6 @@ const HeroSection = () => {
       id="home"
       className="relative h-screen overflow-hidden bg-[#ADD8E6]"
     >
-      {/* Particle Background */}
-      <div className="absolute inset-0">
-        <ParticlesBackground />
-      </div>
-
       {/* Content */}
       <div className="relative container mx-auto h-full flex flex-col justify-center items-center text-center px-4">
         <h1 className="text-5xl font-bold mb-4">
