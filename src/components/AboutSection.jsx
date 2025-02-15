@@ -1,8 +1,21 @@
 import React, { useState } from "react";
+import { useSpring, animated } from "@react-spring/web";
+import { useInView } from "react-intersection-observer";
 import { Lightbulb, ClipboardList } from "lucide-react";
+
+const Counter = ({ value }) => {
+  const { number } = useSpring({
+    from: { number: 0 },
+    to: { number: value },
+    config: { duration: 2000 },
+  });
+
+  return <animated.span>{number.to((n) => Math.floor(n))}</animated.span>;
+};
 
 const AboutSection = () => {
   const [activeTab, setActiveTab] = useState("philosophy");
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
 
   return (
     <section 
@@ -34,20 +47,32 @@ const AboutSection = () => {
           </p>
         </div>
 
+        {/* Animated Counters */}
+        <div ref={ref} className="flex justify-center items-center gap-16 mb-12">
+          <div className="text-center">
+            <p className="text-5xl font-bold text-[#0079C1]">
+              {inView && <Counter value={24} />}
+            </p>
+            <p className="text-lg font-semibold text-gray-700">Years of Experience</p>
+          </div>
+          <div className="text-center">
+            <p className="text-5xl font-bold text-[#0079C1]">
+              {inView && <Counter value={562} />}
+            </p>
+            <p className="text-lg font-semibold text-gray-700">Clients Served</p>
+          </div>
+        </div>
+
         {/* Tabs */}
         <div className="flex space-x-2 justify-center">
           {/* Our Philosophy Tab */}
           <button
             onClick={() => setActiveTab("philosophy")}
-            className={`
-              relative px-5 py-3 font-semibold 
-              rounded-t-md transition-colors duration-300
-              ${
-                activeTab === "philosophy"
-                  ? "bg-[#0079C1] text-white shadow-md"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }
-            `}
+            className={`relative px-5 py-3 font-semibold rounded-t-md transition-colors duration-300 ${
+              activeTab === "philosophy"
+                ? "bg-[#0079C1] text-white shadow-md"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
           >
             Our Philosophy
           </button>
@@ -55,15 +80,11 @@ const AboutSection = () => {
           {/* Fiduciary Duty Tab */}
           <button
             onClick={() => setActiveTab("fiduciary")}
-            className={`
-              relative px-5 py-3 font-semibold 
-              rounded-t-md transition-colors duration-300
-              ${
-                activeTab === "fiduciary"
-                  ? "bg-[#0079C1] text-white shadow-md"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }
-            `}
+            className={`relative px-5 py-3 font-semibold rounded-t-md transition-colors duration-300 ${
+              activeTab === "fiduciary"
+                ? "bg-[#0079C1] text-white shadow-md"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
           >
             Fiduciary Duty
           </button>
