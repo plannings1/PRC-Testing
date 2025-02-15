@@ -75,7 +75,6 @@ const Website = () => {
       <WhatSetsUsApartSection />
       <ServicesSection />
       <ContactSection />
-      <Footer />
     </div>
   );
 };
