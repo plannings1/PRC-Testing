@@ -25,9 +25,9 @@ const DocumentsPage = () => {
       <Navbar />
 
       {/* Main Content */}
-      <div className="flex-grow max-w-6xl mx-auto bg-[#FAFAFA] shadow-xl rounded-xl p-8 border border-gray-300 mt-20">
+      <div className="flex-grow max-w-6xl mx-auto bg-[#FAFAFA] shadow-xl rounded-xl p-6 md:p-8 border border-gray-300 mt-20 w-full">
         {/* Page Title */}
-        <h2 className="text-4xl font-bold text-center mb-8 text-[#0079C1]">Documents</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8 text-[#0079C1]">Documents</h2>
 
         {/* Search Bar */}
         <div className="mb-6">
@@ -40,8 +40,8 @@ const DocumentsPage = () => {
           />
         </div>
 
-        {/* Documents Table */}
-        <div className="overflow-x-auto">
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full border-collapse bg-white shadow-md rounded-md">
             <thead className="bg-[#0079C1] text-white">
               <tr>
@@ -80,10 +80,33 @@ const DocumentsPage = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Mobile View - Card Format */}
+        <div className="md:hidden">
+          {filteredDocuments.length > 0 ? (
+            filteredDocuments.map((doc, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md p-4 mb-4 border border-gray-300">
+                <p className="text-lg font-semibold text-[#0079C1]">{doc.name}</p>
+                <p className="text-gray-600 text-sm">Year: {doc.year}</p>
+                <p className="text-gray-600 text-sm">Category: {doc.category}</p>
+                <a
+                  href={doc.url}
+                  download
+                  className="mt-3 inline-block bg-[#0079C1] text-white px-4 py-2 rounded-lg shadow-md hover:bg-[#005f91] transition text-sm flex items-center justify-center w-full"
+                >
+                  <Download size={16} className="mr-2" />
+                  Download
+                </a>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-500">No documents found.</p>
+          )}
+        </div>
       </div>
 
       {/* Footer Section */}
-      <Footer /> {/* ✅ Footer added at the bottom */}
+      <Footer />
     </div>
   );
 };
