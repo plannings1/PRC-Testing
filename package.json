@@ -13,13 +13,16 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/react": "^3.0.0",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "lucide-react": "^0.460.0",
     "nodemailer": "^6.9.16",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
@@ -37,5 +40,4 @@
     "vite": "^5.4.10"
   },
   "proxy": "http://localhost:5000"
-
 }
