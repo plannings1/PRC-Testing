@@ -98,7 +98,7 @@ const Website = () => {
         <div className="container mx-auto flex justify-between items-center px-6 py-4">
           {/* Left Side: Business Name */}
           <div className="text-xl font-semibold text-gray-800">
-          Planning Resources Center
+          Planning Resources Center - 10:42
           </div>
 
           {/* Hamburger Menu */}
