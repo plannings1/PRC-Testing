@@ -14,9 +14,9 @@ const WhatSetsUsApartSection = () => {
       ];
 
   return (
-    <section id="what-sets-us-apart" className="bg-gray-100 py-20">
+    <section id="what-sets-us-apart" className="bg-gray-100 py-20 text-gray-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">
+        <h2 className="text-4xl font-bold text-center mb-16 text-[#0079C1]">
           What Sets Us Apart
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-4">

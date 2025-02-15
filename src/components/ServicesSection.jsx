@@ -1,16 +1,15 @@
-// src/components/ServicesSection.jsx
 import React from "react";
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-20 bg-blue-50 text-gray-800">
+    <section id="services" className="py-20 bg-gradient-to-b from-white to-[#F0F9FF] text-gray-900">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold tracking-tight mb-4">
+          <h2 className="text-4xl font-bold tracking-tight mb-4 bg-gradient-to-r from-[#0079C1] to-[#00A6A6] bg-clip-text text-transparent drop-shadow-md">
             Products and Services
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto text-gray-700">
             We offer a comprehensive suite of insurance and investment products
             designed to meet the diverse needs of individuals and businesses.
             Our solutions are tailored to align with your financial objectives,
@@ -21,11 +20,11 @@ const ServicesSection = () => {
         {/* Service Categories */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Insurance Products */}
-          <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-8 transition-shadow hover:shadow-md duration-300">
-            <h3 className="text-2xl font-semibold mb-4">
+          <div className="bg-gradient-to-b from-[#F0F9FF] to-[#E6F4F1] border border-[#0079C1] rounded-lg shadow-lg hover:shadow-xl p-8 text-gray-900 transition-shadow duration-300">
+            <h3 className="text-2xl font-semibold mb-4 text-[#0079C1]">
               Insurance Products
             </h3>
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
+            <ul className="list-disc list-inside space-y-2">
               <li>Life Insurance</li>
               <li>Annuities</li>
               <li>Health Insurance</li>
@@ -39,11 +38,11 @@ const ServicesSection = () => {
           </div>
 
           {/* Investment & Financial Services */}
-          <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-8 transition-shadow hover:shadow-md duration-300">
-            <h3 className="text-2xl font-semibold mb-4">
+          <div className="bg-gradient-to-b from-[#F0F9FF] to-[#E6F4F1] border border-[#0079C1] rounded-lg shadow-lg hover:shadow-xl p-8 text-gray-900 transition-shadow duration-300">
+            <h3 className="text-2xl font-semibold mb-4 text-[#0079C1]">
               Investment &amp; Financial Services
             </h3>
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
+            <ul className="list-disc list-inside space-y-2">
               <li>Portfolio Management</li>
               <li>Private Wealth Management</li>
               <li>Investment Consulting</li>
@@ -62,7 +61,7 @@ const ServicesSection = () => {
         {/* Call-to-Action */}
         <div className="text-center mt-16">
           <h3 className="text-2xl font-semibold mb-4">Let’s Get Started</h3>
-          <p className="text-gray-700 max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="max-w-2xl mx-auto mb-8 leading-relaxed text-gray-700">
             Your financial future is important, and we’re here to help you make
             it as secure and prosperous as possible. Whether you’re just starting
             your investment journey or looking to optimize your portfolio,
@@ -70,8 +69,7 @@ const ServicesSection = () => {
           </p>
           <a
             href="#contact"
-            className="inline-block px-6 py-3 text-blue-600 border-2 border-blue-600 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors duration-300"
-          >
+            className="inline-block px-6 py-3 text-white bg-[#0079C1] rounded-lg font-semibold hover:bg-[#005f8d] transition-colors duration-300"          >
             Ready to take the next step? Contact us today.
           </a>
         </div>

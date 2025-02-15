@@ -46,14 +46,9 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative bg-cover bg-center bg-no-repeat py-20"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1473186578172-c141e6798cf4?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.png')",
-      }}
+      className="relative py-20 bg-gradient-to-b from-[#0079C1] to-[#00A6A6] text-white"
     >
-      <div className="absolute inset-0 bg-black opacity-50"></div>
-      <div className="relative container mx-auto px-4 text-white">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Office Details */}
           <div>
@@ -83,7 +78,7 @@ const ContactSection = () => {
                 onChange={handleChange}
                 placeholder="Your name"
                 required
-                className="w-full p-3 bg-white bg-opacity-50 rounded-lg border-none text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-800"
+                className="w-full p-3 bg-white text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0079C1]"
               />
               <input
                 type="email"
@@ -92,7 +87,7 @@ const ContactSection = () => {
                 onChange={handleChange}
                 placeholder="Your email address"
                 required
-                className="w-full p-3 bg-white bg-opacity-50 rounded-lg border-none text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-800"
+                className="w-full p-3 bg-white text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0079C1]"
               />
               <textarea
                 name="message"
@@ -101,11 +96,11 @@ const ContactSection = () => {
                 placeholder="Message"
                 rows="4"
                 required
-                className="w-full p-3 bg-white bg-opacity-50 rounded-lg border-none text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-800"
+                className="w-full p-3 bg-white text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0079C1]"
               ></textarea>
               <button
                 type="submit"
-                className="w-full bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-800"
+                className="w-full bg-[#0079C1] text-white px-6 py-3 rounded-lg hover:bg-[#005f8d] focus:outline-none focus:ring-2 focus:ring-[#00A6A6]"
               >
                 Send
               </button>
@@ -117,16 +112,12 @@ const ContactSection = () => {
       {/* Success Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <h2 className="text-lg font-semibold text-gray-800">
-              Message Sent Successfully!
-            </h2>
-            <p className="text-gray-600 mt-2">
-              Thank you for reaching out. We’ll get back to you soon!
-            </p>
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center text-gray-900">
+            <h2 className="text-lg font-semibold">Message Sent Successfully!</h2>
+            <p className="mt-2">Thank you for reaching out. We’ll get back to you soon!</p>
             <button
               onClick={() => setIsModalOpen(false)}
-              className="mt-4 bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700"
+              className="mt-4 bg-[#0079C1] text-white px-4 py-2 rounded-lg hover:bg-[#005f8d]"
             >
               Close
             </button>
