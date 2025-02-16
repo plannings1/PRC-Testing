@@ -85,7 +85,7 @@ const Website = () => {
       <AboutSection />
       <WhatSetsUsApartSection />
       <ServicesSection />
-      <ContactSection />
+      {/*<ContactSection />*/}
       <Footer />
     </div>
   );
