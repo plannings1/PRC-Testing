@@ -17,36 +17,41 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative h-screen overflow-hidden bg-gradient-to-r from-[#0079C1] to-[#00A6A6] flex items-center justify-center animate-gradient"
+      // Use min-h-screen to ensure content isn't cut off on mobile
+      // Remove overflow settings here to avoid a second scrollbar
+      className="relative min-h-screen bg-gradient-to-r from-[#0079C1] to-[#00A6A6] animate-gradient flex flex-col justify-center"
     >
-      {/* Animated Floating Bubbles */}
-      {bubbles.map((bubble) => (
-        <span
-          key={bubble.id}
-          className="absolute w-2 h-2 bg-white rounded-full opacity-50 animate-float"
+      {/* 
+        Absolutely positioned container for the bubbles and radial overlay 
+        so they don't affect the main layout or cause extra scrollbars.
+      */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        {/* Animated Floating Bubbles */}
+        {bubbles.map((bubble) => (
+          <span
+            key={bubble.id}
+            className="absolute w-2 h-2 bg-white rounded-full opacity-50 animate-float"
+            style={{
+              left: bubble.left,
+              animationDuration: bubble.animationDuration,
+              animationDelay: bubble.animationDelay,
+            }}
+          ></span>
+        ))}
+
+        {/* Light Radial Overlay */}
+        <div
+          className="absolute inset-0 bg-opacity-50 animate-fadeIn"
           style={{
-            left: bubble.left,
-            animationDuration: bubble.animationDuration,
-            animationDelay: bubble.animationDelay,
+            backgroundImage:
+              "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15), transparent 70%)",
           }}
-        ></span>
-      ))}
+        ></div>
+      </div>
 
-      {/* Light Radial Overlay */}
-      <div
-        className="absolute inset-0 bg-opacity-50 animate-fadeIn"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15), transparent 70%)",
-        }}
-      ></div>
-
-      {/* Content */}
-      <div className="relative container mx-auto h-full flex flex-col justify-center items-center text-center px-4 text-white">
-        <h2 className="text-4xl font-semibold mb-2 drop-shadow-md">
-          Planning Resources Center
-        </h2>
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-md text-white">
+      {/* Main Content */}
+      <div className="relative z-10 container mx-auto px-4 py-10 text-white text-center flex flex-col items-center justify-center">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-md">
           Elevate Your Wealth with Better Planning
         </h1>
 
@@ -55,7 +60,7 @@ const HeroSection = () => {
           At <span className="font-bold">Planning Resources Center</span>, we offer truly <strong>independent</strong>, <strong>fiduciary-based</strong> financial and insurance solutions tailored to your unique goals. With <strong>no sales quotas</strong> and a commitment to <strong>transparency</strong>, our only focus is <span className="font-bold">you</span>.
         </p>
 
-        {/* Key Differentiators (Optional) */}
+        {/* Key Differentiators */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 max-w-4xl">
           <div className="bg-white bg-opacity-10 rounded-lg p-4">
             <h3 className="font-bold text-xl mb-2">Independent & Fiduciary</h3>
