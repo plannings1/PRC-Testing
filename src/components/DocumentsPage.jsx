@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { Download } from "lucide-react";
 import Navbar from "../components/Navbar";
+import StickyFooter from "./StickyFooter";
 import Footer from "../components/Footer";
+import ContactSection from "../components/ContactSection";
 
 const documents = [
+  { year: 2025, name: "Annual Report", category: "Financial", url: "https://www.chicago.gov/content/dam/city/depts/streets/supp_info/2024-Street-Sweeping/2024-Street-Sweeping-Schedules/01st-Ward-Street-Sweeping-Schedule.pdf" },
+  { year: 2024, name: "Compliance Guidelines", category: "Regulatory", url: "/docs/compliance-2023.pdf" },
+  { year: 2025, name: "Privacy Policy", category: "Legal", url: "/docs/privacy-policy-2022.pdf" },
   { year: 2024, name: "Annual Report", category: "Financial", url: "https://www.chicago.gov/content/dam/city/depts/streets/supp_info/2024-Street-Sweeping/2024-Street-Sweeping-Schedules/01st-Ward-Street-Sweeping-Schedule.pdf" },
+  { year: 2025, name: "Compliance Guidelines", category: "Regulatory", url: "/docs/compliance-2023.pdf" },
+  { year: 2024, name: "Privacy Policy", category: "Legal", url: "/docs/privacy-policy-2022.pdf" },
+  { year: 2023, name: "Annual Report", category: "Financial", url: "https://www.chicago.gov/content/dam/city/depts/streets/supp_info/2024-Street-Sweeping/2024-Street-Sweeping-Schedules/01st-Ward-Street-Sweeping-Schedule.pdf" },
   { year: 2023, name: "Compliance Guidelines", category: "Regulatory", url: "/docs/compliance-2023.pdf" },
-  { year: 2022, name: "Privacy Policy", category: "Legal", url: "/docs/privacy-policy-2022.pdf" },
+  { year: 2023, name: "Privacy Policy", category: "Legal", url: "/docs/privacy-policy-2022.pdf" },
 ];
 
 const DocumentsPage = () => {
@@ -22,6 +30,7 @@ const DocumentsPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-[#E6F4F1] text-gray-900">
       <Navbar />
+      <StickyFooter />
 
       <div className="flex-grow max-w-6xl mx-auto bg-[#FAFAFA] shadow-xl rounded-xl p-6 md:p-8 border border-gray-300 mt-20 w-full">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8 text-[#0079C1]">Documents</h2>
@@ -99,7 +108,7 @@ const DocumentsPage = () => {
           </table>
         </div>
       </div>
-
+      <ContactSection />
       <Footer />
     </div>
   );

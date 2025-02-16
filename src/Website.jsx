@@ -7,7 +7,7 @@ import AboutSection from "./components/AboutSection";
 import ServicesSection from "./components/ServicesSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
-
+import StickyFooter from "./components/StickyFooter";
 const Website = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [clickedSection, setClickedSection] = useState(null);
@@ -70,11 +70,13 @@ const Website = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar activeSection={activeSection} onNavClick={handleNavClick} />
+      <StickyFooter />
       <HeroSection />
       <AboutSection />
       <WhatSetsUsApartSection />
       <ServicesSection />
       <ContactSection />
+      <Footer />
     </div>
   );
 };
