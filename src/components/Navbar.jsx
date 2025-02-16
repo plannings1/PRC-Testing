@@ -16,7 +16,7 @@ const Navbar = () => {
     { label: "Contact", id: "contact" },
   ];
 
-  // Track active section in view
+  // Intersection Observer for Active Section Highlighting
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -25,7 +25,10 @@ const Navbar = () => {
           setActiveSection(visibleSection.target.id);
         }
       },
-      { threshold: 0.5 }
+      {
+        threshold: 0.2,  // Adjusted threshold for mobile
+        rootMargin: "0px 0px -100px 0px",  // Helps detect intersection earlier
+      }
     );
 
     sections.forEach((section) => {
@@ -36,15 +39,29 @@ const Navbar = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuOpen && menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
   // Handle navigation for section links
   const handleSectionClick = (e, sectionId) => {
     e.preventDefault();
 
     if (location.pathname === "/") {
-      // If already on the homepage, scroll to section
+      // If already on homepage, scroll to section
       document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
     } else {
-      // If on a non-SPA page, navigate first, then scroll after page loads
+      // Navigate first, then scroll after page load
       navigate(`/#${sectionId}`);
       setTimeout(() => {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
@@ -57,8 +74,25 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full bg-white shadow-sm z-50">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
+        {/* Business Name Clickable */}
         <div className="text-xl font-semibold text-gray-800">
-          Planning Resources Center
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              if (window.scrollY === 0) {
+                navigate(`/#home`);
+                setTimeout(() => {
+                  document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+            className="cursor-pointer hover:text-gray-600 transition-all"
+          >
+            Planning Resources Center
+          </a>
         </div>
 
         {/* Hamburger Menu (Mobile) */}
@@ -70,40 +104,40 @@ const Navbar = () => {
           </button>
 
           {/* Dropdown Menu (Mobile) */}
-          <div
-            className={`absolute top-full right-0 bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out ${
-              menuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-            }`}
-            style={{ width: "200px" }}
-          >
-            <ul className="flex flex-col py-2">
-              {sections.map((section) => (
-                <li key={section.id} className="px-4 py-2">
-                  <a
-                    href={`#${section.id}`}
-                    onClick={(e) => handleSectionClick(e, section.id)}
+          {menuOpen && (
+            <div
+              className="absolute top-full right-0 bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out"
+              style={{ width: "200px" }}
+            >
+              <ul className="flex flex-col py-2">
+                {sections.map((section) => (
+                  <li key={section.id} className="px-4 py-2">
+                    <a
+                      href={`#${section.id}`}
+                      onClick={(e) => handleSectionClick(e, section.id)}
+                      className={`block text-gray-800 hover:text-gray-600 w-full text-left ${
+                        activeSection === section.id ? "active-section" : ""
+                      }`}
+                    >
+                      {section.label}
+                    </a>
+                  </li>
+                ))}
+                {/* Documents Page Link */}
+                <li className="px-4 py-2">
+                  <Link
+                    to="/documents"
                     className={`block text-gray-800 hover:text-gray-600 w-full text-left ${
-                      activeSection === section.id ? "active-section" : ""
+                      location.pathname === "/documents" ? "page-active" : ""
                     }`}
+                    onClick={() => setMenuOpen(false)}
                   >
-                    {section.label}
-                  </a>
+                    Documents
+                  </Link>
                 </li>
-              ))}
-              {/* Documents Page Link with Box Effect */}
-              <li className="px-4 py-2">
-                <Link
-                  to="/documents"
-                  className={`block text-gray-800 hover:text-gray-600 w-full text-left px-3 py-2 ${
-                    location.pathname === "/documents" ? "page-active" : ""
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Documents
-                </Link>
-              </li>
-            </ul>
-          </div>
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Full Navigation for Larger Screens */}
@@ -120,7 +154,7 @@ const Navbar = () => {
               {section.label}
             </a>
           ))}
-          {/* Documents Page Link with Box Effect */}
+          {/* Documents Page Link */}
           <Link
             to="/documents"
             className={`hover:text-gray-600 transition-all px-3 py-2 ${

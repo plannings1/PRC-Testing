@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";  // ✅ Import Footer
 import { Download } from "lucide-react";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const documents = [
-  { year: 2024, name: "Annual Report", category: "Financial", url: "/docs/annual-report-2024.pdf" },
+  { year: 2024, name: "Annual Report", category: "Financial", url: "https://www.chicago.gov/content/dam/city/depts/streets/supp_info/2024-Street-Sweeping/2024-Street-Sweeping-Schedules/01st-Ward-Street-Sweeping-Schedule.pdf" },
   { year: 2023, name: "Compliance Guidelines", category: "Regulatory", url: "/docs/compliance-2023.pdf" },
   { year: 2022, name: "Privacy Policy", category: "Legal", url: "/docs/privacy-policy-2022.pdf" },
 ];
@@ -12,7 +12,6 @@ const documents = [
 const DocumentsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter documents based on search
   const filteredDocuments = documents.filter(
     (doc) =>
       doc.year.toString().includes(searchTerm) ||
@@ -24,12 +23,10 @@ const DocumentsPage = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-[#E6F4F1] text-gray-900">
       <Navbar />
 
-      {/* Main Content */}
       <div className="flex-grow max-w-6xl mx-auto bg-[#FAFAFA] shadow-xl rounded-xl p-6 md:p-8 border border-gray-300 mt-20 w-full">
-        {/* Page Title */}
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8 text-[#0079C1]">Documents</h2>
 
-        {/* Search Bar */}
+        {/* Search Box */}
         <div className="mb-6">
           <input
             type="text"
@@ -40,7 +37,29 @@ const DocumentsPage = () => {
           />
         </div>
 
-        {/* Desktop Table */}
+        {/* ✅ Mobile-Friendly List Format (Shown on Small Screens) */}
+        <div className="md:hidden">
+          {filteredDocuments.length > 0 ? (
+            filteredDocuments.map((doc, index) => (
+              <div key={index} className="bg-white shadow-md rounded-lg p-4 mb-4 border border-gray-200">
+                <h3 className="text-lg font-semibold text-[#0079C1]">{doc.name}</h3>
+                <p className="text-sm text-gray-700">Year: {doc.year}</p>
+                <p className="text-sm text-gray-700">Category: {doc.category}</p>
+                <a
+                  href={doc.url}
+                  download
+                  className="mt-3 inline-flex items-center bg-[#0079C1] text-white px-4 py-2 rounded-lg shadow-md hover:bg-[#005f91] transition"
+                >
+                  <Download size={16} className="mr-2" /> Download
+                </a>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-500 py-4">No documents found.</p>
+          )}
+        </div>
+
+        {/* ✅ Full Table Format (Only Visible on Medium Screens and Up) */}
         <div className="hidden md:block overflow-x-auto">
           <table className="w-full border-collapse bg-white shadow-md rounded-md">
             <thead className="bg-[#0079C1] text-white">
@@ -48,7 +67,7 @@ const DocumentsPage = () => {
                 <th className="px-4 py-3 text-left">Year</th>
                 <th className="px-4 py-3 text-left">Document Name</th>
                 <th className="px-4 py-3 text-left">Category</th>
-                <th className="px-4 py-3 text-center">Download</th>
+                <th className="px-4 py-3 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -64,8 +83,7 @@ const DocumentsPage = () => {
                         download
                         className="bg-[#0079C1] text-white px-4 py-2 rounded-lg shadow-md hover:bg-[#005f91] transition inline-flex items-center"
                       >
-                        <Download size={16} className="mr-2" />
-                        Download
+                        <Download size={16} className="mr-2" /> Download
                       </a>
                     </td>
                   </tr>
@@ -80,32 +98,8 @@ const DocumentsPage = () => {
             </tbody>
           </table>
         </div>
-
-        {/* Mobile View - Card Format */}
-        <div className="md:hidden">
-          {filteredDocuments.length > 0 ? (
-            filteredDocuments.map((doc, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-4 mb-4 border border-gray-300">
-                <p className="text-lg font-semibold text-[#0079C1]">{doc.name}</p>
-                <p className="text-gray-600 text-sm">Year: {doc.year}</p>
-                <p className="text-gray-600 text-sm">Category: {doc.category}</p>
-                <a
-                  href={doc.url}
-                  download
-                  className="mt-3 inline-block bg-[#0079C1] text-white px-4 py-2 rounded-lg shadow-md hover:bg-[#005f91] transition text-sm flex items-center justify-center w-full"
-                >
-                  <Download size={16} className="mr-2" />
-                  Download
-                </a>
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-500">No documents found.</p>
-          )}
-        </div>
       </div>
 
-      {/* Footer Section */}
       <Footer />
     </div>
   );
