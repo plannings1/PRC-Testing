@@ -8,6 +8,8 @@ import ServicesSection from "./components/ServicesSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import StickyFooter from "./components/StickyFooter";
+import FloatingActionButton from "./components/FloatingActionButton";
+
 const Website = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [clickedSection, setClickedSection] = useState(null);
@@ -70,7 +72,15 @@ const Website = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar activeSection={activeSection} onNavClick={handleNavClick} />
-      <StickyFooter />
+      {/* Desktop Sticky Footer */}
+      <div className="hidden md:block">
+        <StickyFooter />
+      </div>
+
+      {/* Mobile FAB */}
+      <div className="block md:hidden">
+        <FloatingActionButton />
+      </div>
       <HeroSection />
       <AboutSection />
       <WhatSetsUsApartSection />

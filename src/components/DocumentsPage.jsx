@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Download } from "lucide-react";
 import Navbar from "../components/Navbar";
 import StickyFooter from "./StickyFooter";
+import FloatingActionButton from "./FloatingActionButton";
 import Footer from "../components/Footer";
 import ContactSection from "../components/ContactSection";
 
@@ -30,7 +31,15 @@ const DocumentsPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-[#E6F4F1] text-gray-900">
       <Navbar />
-      <StickyFooter />
+            {/* Desktop Sticky Footer */}
+            <div className="hidden md:block">
+        <StickyFooter />
+      </div>
+
+      {/* Mobile FAB */}
+      <div className="block md:hidden">
+        <FloatingActionButton />
+      </div>
 
       <div className="flex-grow max-w-6xl mx-auto bg-[#FAFAFA] shadow-xl rounded-xl p-6 md:p-8 border border-gray-300 mt-20 w-full">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8 text-[#0079C1]">Documents</h2>
